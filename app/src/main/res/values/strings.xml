@@ -8,6 +8,11 @@
     <string name="charts">Top Stats</string>
     <string name="settings">Settings</string>
     <string name="stats">Stats</string>
+
+
+    <string name="artists">Artists</string>
+    <string name="songs">Songs</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

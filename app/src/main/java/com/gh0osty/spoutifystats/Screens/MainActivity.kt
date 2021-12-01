@@ -1,4 +1,4 @@
-package com.gh0osty.spoutifystats
+package com.gh0osty.spoutifystats.Screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import com.gh0osty.spoutifystats.Fragments.HomeFragment
 import com.gh0osty.spoutifystats.Fragments.SettingsFragment
 import com.gh0osty.spoutifystats.Fragments.StatsFragment
 import com.gh0osty.spoutifystats.Fragments.TopStatsFragment
+import com.gh0osty.spoutifystats.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

@@ -2,13 +2,31 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_gradient"
     android:layout_height="match_parent"
     tools:context=".Fragments.TopStats_ArtistFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Top Stats" />
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/topStatsArtist_recyclerView"
+                android:scrollbars="vertical"
+                android:layout_marginTop="20dp" />
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
 
 </FrameLayout>

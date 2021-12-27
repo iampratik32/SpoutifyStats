@@ -10,5 +10,6 @@
 
     <color name="mainGradient1">#263238</color>
     <color name="mainGradient2">#000</color>
+    <color name="cardColor1">#607D8B</color>
 
 </resources>

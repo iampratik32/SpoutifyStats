@@ -7,8 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gh0osty.spoutifystats.Adapters.Artist_SimilarArtistAdapter
 import com.gh0osty.spoutifystats.Adapters.Artist_TopSongsAdapter
 import com.gh0osty.spoutifystats.Adapters.TopArtistAdapter
 import com.gh0osty.spoutifystats.R
@@ -23,7 +25,8 @@ class ArtistActivity : AppCompatActivity() {
     private var nameTextView: TextView? = null
     private var spotifyIcon: ImageView? = null
     private var imageBackground: ImageView? = null
-    private var recyclerView: RecyclerView? = null
+    private var songRecyclerView: RecyclerView? = null
+    private var artistRecyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +40,23 @@ class ArtistActivity : AppCompatActivity() {
 
         fetchAll()
 
-        recyclerView?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        songRecyclerView?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         val data = ArrayList<Artist_TopSongsViewModel>()
         for (i in 1..10) {
             data.add(Artist_TopSongsViewModel("S${i}","Song $i",i,R.drawable.spotify))
         }
         val adapter = Artist_TopSongsAdapter(data,this)
-        recyclerView?.adapter = adapter
+        songRecyclerView?.adapter = adapter
+
+
+        artistRecyclerView?.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
+        val data2 = ArrayList<TopArtistViewModel>()
+        for (i in 1..10) {
+            data2.add(TopArtistViewModel("A${i}","Artist $i",R.drawable.spotify))
+        }
+        val adapter2 = Artist_SimilarArtistAdapter(data2,this)
+        artistRecyclerView?.adapter = adapter2
+
 
         collapsingLayout?.title = name
         nameTextView?.text = name
@@ -65,6 +78,7 @@ class ArtistActivity : AppCompatActivity() {
         nameTextView = findViewById(R.id.artist_name)
         spotifyIcon = findViewById(R.id.artist_spotifyIcon)
         imageBackground = findViewById(R.id.artist_background)
-        recyclerView = findViewById(R.id.artist_topSongsRecyclerView)
+        songRecyclerView = findViewById(R.id.artist_topSongsRecyclerView)
+        artistRecyclerView = findViewById(R.id.artist_similarArtistRecyclerView)
     }
 }

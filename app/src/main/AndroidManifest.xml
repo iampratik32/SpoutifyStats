@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpoutifyStats">
         <activity
+            android:name=".Screens.SongActivity"
+            android:exported="true" />
+        <activity
             android:name=".Screens.ArtistActivity"
             android:exported="true" />
         <activity

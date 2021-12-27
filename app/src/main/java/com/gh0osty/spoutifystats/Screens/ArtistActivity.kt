@@ -7,7 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gh0osty.spoutifystats.Adapters.Artist_TopSongsAdapter
+import com.gh0osty.spoutifystats.Adapters.TopArtistAdapter
 import com.gh0osty.spoutifystats.R
+import com.gh0osty.spoutifystats.ViewModels.Artist_TopSongsViewModel
+import com.gh0osty.spoutifystats.ViewModels.TopArtistViewModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 
 class ArtistActivity : AppCompatActivity() {
@@ -17,6 +23,7 @@ class ArtistActivity : AppCompatActivity() {
     private var nameTextView: TextView? = null
     private var spotifyIcon: ImageView? = null
     private var imageBackground: ImageView? = null
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +37,14 @@ class ArtistActivity : AppCompatActivity() {
 
         fetchAll()
 
+        recyclerView?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        val data = ArrayList<Artist_TopSongsViewModel>()
+        for (i in 1..10) {
+            data.add(Artist_TopSongsViewModel("S${i}","Song $i",i,R.drawable.spotify))
+        }
+        val adapter = Artist_TopSongsAdapter(data,this)
+        recyclerView?.adapter = adapter
+
         collapsingLayout?.title = name
         nameTextView?.text = name
         collapsingLayout?.setExpandedTitleColor(Color.TRANSPARENT)
@@ -38,17 +53,18 @@ class ArtistActivity : AppCompatActivity() {
             finish()
         }
 
-        spotifyIcon?.setOnClickListener{
-            Toast.makeText(this,"Open Artist $id From Spotify",Toast.LENGTH_SHORT).show()
+        spotifyIcon?.setOnClickListener {
+            Toast.makeText(this, "Open Artist $id From Spotify", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    private fun fetchAll(){
+    private fun fetchAll() {
         collapsingLayout = findViewById(R.id.artist_collapsingLayout)
         toolbar = findViewById(R.id.artist_toolBar)
         nameTextView = findViewById(R.id.artist_name)
         spotifyIcon = findViewById(R.id.artist_spotifyIcon)
         imageBackground = findViewById(R.id.artist_background)
+        recyclerView = findViewById(R.id.artist_topSongsRecyclerView)
     }
 }

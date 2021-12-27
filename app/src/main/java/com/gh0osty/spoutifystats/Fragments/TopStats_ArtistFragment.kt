@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gh0osty.spoutifystats.Adapters.TopArtistAdapter
 import com.gh0osty.spoutifystats.R
@@ -27,7 +26,7 @@ class TopStats_ArtistFragment : Fragment() {
         for (i in 0..50) {
             data.add(TopArtistViewModel("A${i}","Artist ${i+1}",R.drawable.spotify))
         }
-        val adapter = TopArtistAdapter(data)
+        val adapter = TopArtistAdapter(data,context)
         recyclerView.adapter = adapter
 
 

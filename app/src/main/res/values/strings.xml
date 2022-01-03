@@ -16,6 +16,9 @@
     <string name="topSongs">Top Songs</string>
     <string name="similarArtist">Similar Artists</string>
 
+    <string name="sArtists">Song Artists</string>
+    <string name="fAlbum">From Album</string>
+
     <string name="tempStat1">Temp Stat Title</string>
     <string name="tempStat2">Temp Stat Description. This Long.</string>
 

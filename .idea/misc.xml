@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_top_stats.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/fragment_top_stats__artist.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_top_stats__song.xml" value="0.1859375" />
+        <entry key="app/src/main/res/layout/song_artist_card.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/layout/song_card.xml" value="0.19641025641025642" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.19947916666666668" />
       </map>

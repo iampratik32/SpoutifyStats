@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpoutifyStats">
         <activity
+            android:name=".Screens.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Screens.SongActivity"
             android:exported="true" />
         <activity
@@ -18,11 +27,6 @@
         <activity
             android:name=".Screens.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

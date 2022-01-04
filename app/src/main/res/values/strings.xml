@@ -10,6 +10,11 @@
     <string name="stats">Stats</string>
 
 
+    <string name="loginButton">Login</string>
+    <string name="loginButtonProgress">Logging In</string>
+    <string name="spoutify">Spoutify Stats</string>
+    <string name="loginText">Please Login To Start Using Spoutify Stats</string>
+
     <string name="artists">Artists</string>
     <string name="songs">Songs</string>
 

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/main_gradient.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/layout/activity_artist.xml" value="0.19" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_song.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/artist_card.xml" value="0.22" />

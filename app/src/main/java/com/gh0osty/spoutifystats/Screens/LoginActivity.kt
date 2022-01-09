@@ -10,6 +10,7 @@ import com.gh0osty.spoutifystats.Utilities.Helper
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import java.net.URL
 
 
 class LoginActivity : AppCompatActivity() {
@@ -21,6 +22,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val url = intent.data
+        if(url!==null){
+            if(url.query.toString()=="error=access_denied"){
+                Toast.makeText(this,"Access Denied. Please Try Again.",Toast.LENGTH_LONG).show()
+            }
+            else if(url.getQueryParameter("code")!=null){
+                val token = url.getQueryParameter("code").toString()
+                Log.d("TOKEN",token)
+                //TODO:: POST request to the /api/token endpoint
+            }
+        }
 
         loginButton = findViewById(R.id.loginButton)
         loginButton?.setOnClickListener {
@@ -35,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         // TODO:: SHOW LOGIN PAGE
         //loginButton.revertAnimation { loginButton.text = getString(R.string.loginButtonProgress) }
 
-        val url = "https://accounts.spotify.com/authorize?redirect_uri=com.gh0osty.spoutifystats://oauthredirect" +
+        val url = "https://accounts.spotify.com/authorize?redirect_uri=spoutifystats://oauthredirect/" +
                 "&client_id=2a8b05a3d3c545ac9940e534bffa43cf&response_type=code" +
                 "&scope=ugc-image-upload%20user-read-playback-state%20user-modify-playback-state%20user-read-currently-playing%20user-read-email%20user-read-private%20playlist-read-collaborative%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-library-modify%20user-library-read%20user-top-read%20user-read-playback-position%20user-read-recently-played%20user-follow-read%20user-follow-modify"
         val i = Intent(Intent.ACTION_VIEW)

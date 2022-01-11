@@ -10,11 +10,14 @@ import com.gh0osty.spoutifystats.Utilities.Helper
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import com.gh0osty.spoutifystats.Controllers.AuthController
+import org.json.JSONObject
 import java.net.URL
 
 
 class LoginActivity : AppCompatActivity() {
     var loginButton: CircularProgressButton ?= null
+    var authController=AuthController()
 
     var CLIENT_ID = Helper.getClientId()
     var CLIENT_SECRET = Helper.getClientSecret()
@@ -30,8 +33,21 @@ class LoginActivity : AppCompatActivity() {
             }
             else if(url.getQueryParameter("code")!=null){
                 val token = url.getQueryParameter("code").toString()
-                Log.d("TOKEN",token)
-                //TODO:: POST request to the /api/token endpoint
+                authController.getAuthToken(this,token, object :
+                    AuthController.AuthResponseListener {
+
+                    override fun onError(message: String?) {
+                        Log.d("MESSAGE", message!!)
+                    }
+
+                    override fun onResponse(response: Any?) {
+                        val obj = JSONObject(response as String)
+                        Log.d("TOKEN2",obj.getString("access_token"))
+
+                        // TODO:: STORE THIS TOKEN IN DB AND DON'T LOG IN EVERYTIME
+                    }
+                })
+
             }
         }
 

@@ -44,18 +44,6 @@ class AuthController {
 
         }
 
-
-        // Volley request policy, only one time request to avoid duplicate transaction
-        request.retryPolicy = DefaultRetryPolicy(
-            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-            // 0 means no retry
-            0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
-            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        )
-
-
-
-
         VolleySingleton.getInstance(context).addToRequestQueue(request)
 
     }

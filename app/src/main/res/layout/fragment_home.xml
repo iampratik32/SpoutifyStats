@@ -6,10 +6,75 @@
     android:background="@drawable/main_gradient"
     tools:context=".Fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/home_userImageFrame"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:src="@drawable/blank"
+                    android:layout_weight="0.2"
+                    android:layout_height="100dp"
+                    android:id="@+id/home_userImage" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.03"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/home_userName"
+                    android:fontFamily="sans-serif"
+                    android:ellipsize="end"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="30sp"/>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.03"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/home_userLink"
+                        android:src="@drawable/spotify"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

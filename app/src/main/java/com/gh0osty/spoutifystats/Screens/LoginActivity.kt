@@ -14,6 +14,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.gh0osty.spoutifystats.Controllers.AuthController
 import com.gh0osty.spoutifystats.Controllers.UserController
 import com.gh0osty.spoutifystats.Models.AuthModel
+import com.gh0osty.spoutifystats.Models.User
 import io.paperdb.Paper
 import org.json.JSONObject
 
@@ -58,7 +59,10 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onResponse(response: Any?) {
                         val obj = JSONObject(response as String)
-                        Paper.book().write("Auth",AuthModel(obj.getString("access_token"), obj.getString("refresh_token")))
+                        Paper.book().write(
+                            "Auth",
+                            AuthModel(obj.getString("access_token"), obj.getString("refresh_token"))
+                        )
                         getUser()
                     }
                 })
@@ -72,19 +76,26 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
-        userController.getProfile(this,object : UserController.ProfileListener{
+        userController.getProfile(this, object : UserController.ProfileListener {
             override fun onError(message: String?, code: Int?) {
                 message?.let { Log.d("ERROR HERE", message) }
             }
 
-            override fun onResponse(response: Any?, what:Boolean) {
-                if(what){
+            override fun onResponse(response: Any?, what: Boolean) {
+                if (what) {
                     getUser()
-                }
-                else{
+                } else {
                     //TODO:: STORE NEW USER INFO IN THE DATABASE & MOVE FORWARD
                     val obj = JSONObject(response as String)
-                    Log.d("NAME",obj.getString("display_name"))
+                    val user = User(
+                        obj.getString("display_name"),
+                        obj.getString("uri"),
+                        obj.getString("product"),
+                        obj.getJSONArray("images").getJSONObject(0).getString("url"),
+                        obj.getJSONObject("followers").getInt("total")
+                    )
+                    Paper.book().write("User", user)
+
                     openMain()
                 }
 
@@ -92,14 +103,13 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun openMain(){
-        startActivity(Intent(this,MainActivity::class.java))
+    private fun openMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        this.finish()
     }
 
     private fun showLogin() {
         loginButton?.startAnimation()
-
-
 
 
         val url =

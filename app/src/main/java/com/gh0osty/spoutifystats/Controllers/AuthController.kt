@@ -9,9 +9,6 @@ import com.android.volley.*
 import com.android.volley.toolbox.StringRequest
 
 
-
-
-
 class AuthController {
 
     interface AuthResponseListener {

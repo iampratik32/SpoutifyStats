@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gh0osty.spoutifystats.R
 import com.gh0osty.spoutifystats.Screens.SongActivity
 import com.gh0osty.spoutifystats.ViewModels.TopSongViewModel
@@ -38,7 +39,7 @@ class TopSongAdapter(private val list: List<TopSongViewModel>, val context: Cont
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.imageView.setImageResource(item.image)
+        Glide.with(context!!).load(item.image).into(holder.imageView)
         holder.songName.text = item.text
         holder.index.text = "# ${position+1}"
         holder.artist.text = item.artist
@@ -46,7 +47,7 @@ class TopSongAdapter(private val list: List<TopSongViewModel>, val context: Cont
             val intent = Intent(it.context, SongActivity::class.java)
             val bundle = Bundle()
             bundle.putString("sId", item.id)
-            bundle.putString("sImage", item.image.toString())
+            bundle.putString("sImage", item.image)
             bundle.putString("sName", item.text)
             intent.putExtras(bundle)
             it.context.startActivity(intent)

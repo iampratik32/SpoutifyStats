@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gh0osty.spoutifystats.Adapters.Artist_SimilarArtistAdapter
 import com.gh0osty.spoutifystats.Adapters.Artist_TopSongsAdapter
 import com.gh0osty.spoutifystats.Adapters.TopArtistAdapter
@@ -40,6 +41,8 @@ class ArtistActivity : AppCompatActivity() {
 
         fetchAll()
 
+        imageBackground?.let { Glide.with(this).load(image).into(it) }
+
         songRecyclerView?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         val data = ArrayList<Artist_TopSongsViewModel>()
         for (i in 1..10) {
@@ -52,7 +55,7 @@ class ArtistActivity : AppCompatActivity() {
         artistRecyclerView?.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
         val data2 = ArrayList<TopArtistViewModel>()
         for (i in 1..10) {
-            data2.add(TopArtistViewModel("A${i}","Artist $i",R.drawable.spotify))
+            data2.add(TopArtistViewModel("A${i}","Artist $i","R.drawable.spotify"))
         }
         val adapter2 = Artist_SimilarArtistAdapter(data2,this)
         artistRecyclerView?.adapter = adapter2

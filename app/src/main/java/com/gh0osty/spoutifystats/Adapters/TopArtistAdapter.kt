@@ -1,5 +1,6 @@
 package com.gh0osty.spoutifystats.Adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gh0osty.spoutifystats.R
 import com.gh0osty.spoutifystats.Screens.ArtistActivity
 import com.gh0osty.spoutifystats.ViewModels.TopArtistViewModel
@@ -33,20 +35,21 @@ class TopArtistAdapter(private val list: List<TopArtistViewModel>, val context: 
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.imageView.setImageResource(item.image)
-        holder.textView.text = item.text
-        holder.cardView.setOnClickListener{
-            val intent = Intent(it.context,ArtistActivity::class.java)
+        holder.textView.text = (position+1).toString()+". "+item.text
+        holder.cardView.setOnClickListener {
+            val intent = Intent(it.context, ArtistActivity::class.java)
             val bundle = Bundle()
-            bundle.putString("aId",item.id)
-            bundle.putString("aImage",item.image.toString())
-            bundle.putString("aName",item.text)
+            bundle.putString("aId", item.id)
+            bundle.putString("aImage", item.image)
+            bundle.putString("aName", item.text)
             intent.putExtras(bundle)
             it.context.startActivity(intent)
         }
+        Glide.with(context!!).load(item.image).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

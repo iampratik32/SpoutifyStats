@@ -46,4 +46,18 @@
       geeks and we are only a fraction of it yet.
   </string>
 
+    <string name="topArtists1">Top Artists (4 Weeks)</string>
+    <string name="topArtists2">Top Artists (6 Months)</string>
+    <string name="topArtists3">Top Artists (All Time)</string>
+
+    <string name="topSong1">Top Tracks (4 Weeks)</string>
+    <string name="topSong2">Top Tracks (6 Months)</string>
+    <string name="topSong3">Top Tracks (All Time)</string>
+
+    <string-array name="list_of_months">
+        <item>4 Weeks</item>
+        <item>6 Months</item>
+        <item>All Time</item>
+    </string-array>
+
 </resources>

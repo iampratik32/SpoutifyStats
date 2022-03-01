@@ -40,6 +40,7 @@ class ArtistActivity : AppCompatActivity() {
         val id = bundle.getString("aId", "")
 
         fetchAll()
+        loadArtist()
 
         imageBackground?.let { Glide.with(this).load(image).into(it) }
 
@@ -83,5 +84,9 @@ class ArtistActivity : AppCompatActivity() {
         imageBackground = findViewById(R.id.artist_background)
         songRecyclerView = findViewById(R.id.artist_topSongsRecyclerView)
         artistRecyclerView = findViewById(R.id.artist_similarArtistRecyclerView)
+    }
+
+    private fun loadArtist(){
+
     }
 }

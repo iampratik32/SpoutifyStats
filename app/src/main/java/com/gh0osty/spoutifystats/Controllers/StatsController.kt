@@ -18,6 +18,11 @@ class StatsController {
         fun onResponse(response: Any?,what:Boolean)
     }
 
+    interface ArtistListener{
+        fun onError(message: String?, code: Int?)
+        fun onResponse(response: Any?,what:Boolean)
+    }
+
     fun getTop(context:Context, term: String, what:String, listener: TopArtistListener){
         val url = "https://api.spotify.com/v1/me/top/$what?limit=50&offset=0&time_range=$term"
         val auth = Paper.book().read<AuthModel>("Auth")
@@ -58,7 +63,8 @@ class StatsController {
         }
 
         VolleySingleton.getInstance(context).addToRequestQueue(request)
-
     }
+
+
 
 }

@@ -11,7 +11,7 @@
         android:theme="@style/Theme.SpoutifyStats">
 
         <activity
-            android:name=".Screens.LoginActivity"
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,13 +31,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Screens.SongActivity"
+            android:name=".dashboard.song.SongActivity"
             android:exported="true" />
         <activity
-            android:name=".Screens.ArtistActivity"
+            android:name=".dashboard.artist.ArtistActivity"
             android:exported="true" />
         <activity
-            android:name=".Screens.MainActivity"
+            android:name=".dashboard.MainActivity"
             android:exported="true"></activity>
     </application>
 

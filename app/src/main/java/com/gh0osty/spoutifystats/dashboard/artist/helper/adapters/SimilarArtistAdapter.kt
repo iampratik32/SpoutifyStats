@@ -13,9 +13,11 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.gh0osty.spoutifystats.R
 import com.gh0osty.spoutifystats.dashboard.artist.ArtistActivity
+import com.gh0osty.spoutifystats.dashboard.artist.helper.pojos.ArtistPojo
 import com.gh0osty.spoutifystats.dashboard.topStats.helper.TopArtistPojo
+import com.gh0osty.spoutifystats.utilities.loadImage
 
-class SimilarArtistAdapter(private val list: List<TopArtistPojo>, val context: Context?) :
+class SimilarArtistAdapter(private val list: List<ArtistPojo>, val context: Context?) :
     RecyclerView.Adapter<SimilarArtistAdapter.ViewHolder>() {
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -27,7 +29,10 @@ class SimilarArtistAdapter(private val list: List<TopArtistPojo>, val context: C
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.artist_similar_artist_card, parent, false)
-        view.layoutParams = ViewGroup.LayoutParams((Resources.getSystem().displayMetrics.widthPixels*0.4).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
+        view.layoutParams = ViewGroup.LayoutParams(
+            (Resources.getSystem().displayMetrics.widthPixels * 0.4).toInt(),
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
 
         return ViewHolder(view)
     }
@@ -35,13 +40,14 @@ class SimilarArtistAdapter(private val list: List<TopArtistPojo>, val context: C
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.title.text = item.text
-        holder.cardView.setOnClickListener{
+        holder.title.text = item.name
+        loadImage(holder.imageView.context, holder.imageView, item.image)
+        holder.cardView.setOnClickListener {
             val intent = Intent(it.context, ArtistActivity::class.java)
             val bundle = Bundle()
-            bundle.putString("aId",item.id)
-            bundle.putString("aImage",item.image.toString())
-            bundle.putString("aName",item.text)
+            bundle.putString("aId", item.id)
+            bundle.putString("aImage", item.image)
+            bundle.putString("aName", item.name)
             intent.putExtras(bundle)
             it.context.startActivity(intent)
         }

@@ -1,6 +1,7 @@
 package com.gh0osty.spoutifystats.utilities
 
 import android.content.Context
+import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.gh0osty.spoutifystats.auth.MainController
@@ -20,11 +21,13 @@ class ApiHelper {
 
     fun call(context: Context, url: String, listener: ApiListener) {
         val auth = Paper.book().read<AuthPojo>("Auth")
+        Log.d("Test123",url)
 
         val request = object : StringRequest(
             Method.GET, url,
             Response.Listener { response -> listener.onResponse(response, false) },
             Response.ErrorListener { error ->
+                Log.d("TEST123",error.networkResponse.statusCode.toString())
                 if (error.networkResponse.statusCode == 401 && auth !== null) {
                     mainController.getRefreshToken(
                         context,

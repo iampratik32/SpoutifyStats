@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="spotify">#1DB954</color>
 
+    <color name="transparent">#00ffffff</color>
     <color name="mainGradient1">#263238</color>
     <color name="mainGradient2">#000</color>
     <color name="cardColor1">#607D8B</color>

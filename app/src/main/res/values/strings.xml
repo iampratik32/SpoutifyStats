@@ -60,4 +60,6 @@
         <item>All Time</item>
     </string-array>
 
+    <string name="index">%1$d.</string>
+
 </resources>

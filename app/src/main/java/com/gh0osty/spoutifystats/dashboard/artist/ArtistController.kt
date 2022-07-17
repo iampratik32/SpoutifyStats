@@ -1,6 +1,7 @@
 package com.gh0osty.spoutifystats.dashboard.artist
 
 import android.content.Context
+import android.util.Log
 import com.gh0osty.spoutifystats.R
 import com.gh0osty.spoutifystats.dashboard.artist.helper.pojos.ArtistPojo
 import com.gh0osty.spoutifystats.dashboard.artist.helper.pojos.ArtistTopSongPojo
@@ -48,29 +49,31 @@ class ArtistController(val view: ArtistInterface.View, val context: Context) :
     }
 
     override fun getTopSongs(id: String) {
-//        val url = "${Url.MAIN_URL}artists/$id/top-tracks"
-//        ApiHelper().call(context, url, object : ApiHelper.ApiListener {
-//            override fun onError(message: String?, code: Int?) {
-//                view.apiError("$code: ${message.toString()}")
-//            }
-//
-//            override fun onResponse(response: Any?, what: Boolean) {
-//                val obj = JSONObject(response as String)
-//                val items = obj.getJSONArray("tracks")
-//                val data2 = ArrayList<ArtistTopSongPojo>()
-//                for (i in 0 until items.length()) {
-//                    data2.add(
-//                        ArtistTopSongPojo(
-//                            "asd",
-//                            "Song Name",
-//                            1,
-//                            "Test"
-//                        )
-//                    )
-//                }
-//                view.setTopSongList(data2)
-//            }
-//        })
+        val url = "${Url.MAIN_URL}artists/$id/top-tracks?market=IN"
+        // TODO -- Set Market Based On User Region
+        ApiHelper().call(context, url, object : ApiHelper.ApiListener {
+            override fun onError(message: String?, code: Int?) {
+                view.apiError("$code: ${message.toString()}")
+            }
+
+            override fun onResponse(response: Any?, what: Boolean) {
+                val obj = JSONObject(response as String)
+                val items = obj.getJSONArray("tracks")
+                val data2 = ArrayList<ArtistTopSongPojo>()
+                for (i in 0 until items.length()) {
+                    data2.add(
+                        ArtistTopSongPojo(
+                            items.getJSONObject(i).getString("id"),
+                            items.getJSONObject(i).getString("name"),
+                            i + 1,
+                            items.getJSONObject(i).getJSONObject("album").getJSONArray("images")
+                                .getJSONObject(1).getString("url")
+                        )
+                    )
+                }
+                view.setTopSongList(data2)
+            }
+        })
     }
 
     override fun onCreate() {
